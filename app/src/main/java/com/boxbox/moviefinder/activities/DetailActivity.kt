@@ -1,30 +1,26 @@
-package com.boxbox.moviefinder
+package com.boxbox.moviefinder.activities
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.boxbox.moviefinder.R
 
-class MainActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity() {
+
+    companion object {
+        const val EXTRA_ID = "extra_id"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_detail)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-    }
-
-    private fun getRetrofit() : Retrofit {
-        return Retrofit
-            .Builder()
-            .baseUrl("http://www.omdbapi.com/?apikey=d0b8654&")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
     }
 }
